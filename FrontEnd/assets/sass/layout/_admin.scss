@@ -1,0 +1,61 @@
+.admin-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    z-index: 1;
+    color: white;
+    position: sticky;
+    top: 0;
+    background-color: black;
+    height: 60px;
+    & i {
+        font-size: 16px;
+        font-weight: 200;
+    }
+    &__button{
+        border-radius: 60px;
+        border: none;
+        width: 216px;
+        height: 38px;
+        font-family: 'Work Sans';
+        font-size: 14px;
+        font-weight: 600;
+    }
+    &__editdiv{
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        align-items: center;
+        & p {
+            font-size: 16px;
+            font-weight: 300;
+        }
+
+    }
+}
+
+.edit-div{
+    &-photo{
+        display: flex;
+        flex-direction: row;
+        gap: 7px;
+        position: absolute;
+        left: 60px;
+        bottom: -30px;
+        
+    }
+    &-title{
+        display: flex;
+        flex-direction: row;
+        gap: 7px;
+        position: absolute;
+        top: 10px;
+        right: 370px;
+    }
+}
+
+.titre-projet--admin{
+    margin-bottom: 92px !important;
+}
