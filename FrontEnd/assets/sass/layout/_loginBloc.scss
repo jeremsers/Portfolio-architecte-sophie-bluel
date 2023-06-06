@@ -1,0 +1,49 @@
+.login-div{
+    margin: 150px auto;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    color: $text-primary;
+    & form{
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        align-items: center;
+    }
+    & label{
+        font-size: 14px;
+    }
+    & a{
+        color: $text-primary;
+        text-decoration: underline;
+    }
+}
+
+#email, #pass{
+    
+    font-size: 20px;
+    width: 380px;
+    height: 51px;
+    padding: 0 7px;
+    display: flex;
+    margin-top: 7px;
+    flex-direction: column;
+    border-style: none;
+    border: none;
+    box-shadow: 0 4px 14px 0 rgba(0,0,0, .09); 
+    
+    
+}
+
+.btn-connect{
+    font-weight: bold;
+    font-size: 14px;
+    width: 180px;
+    height: 36px;
+    border-style: none;
+    background-color: $button-primary;
+    border-radius: 60px;
+    color: white
+}

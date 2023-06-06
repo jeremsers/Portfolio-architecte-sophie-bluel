@@ -1,0 +1,27 @@
+#portfolio {
+	& h2 {
+		text-align: center;
+		margin-bottom: 1em;
+	}
+}
+
+.button-div{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 51px 0;
+    
+
+}
+
+.gallery {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-column-gap: 20px;
+	grid-row-gap: 20px;
+	& img {
+		width: 100%;
+	}
+}
+

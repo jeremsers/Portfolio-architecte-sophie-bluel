@@ -1,0 +1,17 @@
+.footer{
+	
+	background-color: white;
+	margin: 0 auto;
+	& nav ul{
+	
+	display: flex;
+	justify-content: flex-end;
+	padding: 2em;
+	}
+	&--login{
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+	}
+}

@@ -1,0 +1,24 @@
+header {
+	display: flex;
+	justify-content: space-between;
+	margin: 50px auto;
+    max-width: 1140px;
+
+}
+
+nav {
+    
+	& ul {
+		display: flex;
+		align-items: center;
+		list-style-type: none;
+        gap: 44px;
+	}
+	& li {
+		padding: 0 10px;
+		font-size: 1.2em;
+	}
+    & li:hover {
+        color: #B1663C;
+    }
+}
