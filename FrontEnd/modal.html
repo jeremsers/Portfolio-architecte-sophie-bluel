@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Sophie Bluel - Architecte d'intérieur</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Syne:wght@100;200;300;400;500;600;700;800&family=Work+Sans&display=swap"
+			rel="stylesheet"
+		/>
+		<meta name="description" content="" />
+		<link rel="stylesheet" href="./assets/style.css" />
+		<script
+			src="https://kit.fontawesome.com/d3ea39b0ba.js"
+			crossorigin="anonymous"
+		></script>
+        <script defer src="./assets/modal.js" type="module"></script>
+	</head>
+	<body>
+        <button class="open-modal">wesh</button>
+        
+        <dialog class="dialog modal1">
+            
+                <i class="fa-solid fa-x dialog__close"></i>
+                <h2>Galerie photo</h2>
+                <div class="dialog__container">
+                    
+                    <div class="dialog__div"></div>
+                    <button class="dialog__add">Ajouter une photo</button>
+                    <button class="dialog__del">Supprimer la galerie</button>
+                </div>
+            
+        </dialog>
+        <dialog class=" adialog  modal2">
+            
+                <i class="fa-solid fa-arrow-left adialog__return"></i>
+                <i class="fa-solid fa-x  adialog__close "></i>
+                <h2>Ajout photo</h2>
+                <div class="  adialog__container ">
+                    <form id="add-img"action="#" class=" adialog__form ">
+                        <div class="  adialog__div ">
+                            <i class="fa-regular fa-image"></i>
+                            <input id ="photo" name="photo" type="file" accept=".png,.jpg"></input>
+                            <label for="photo" class="addPhotoBtn">+ Ajouter Photo</label>
+                            <p>jpg, png : 4mo max</p>
+                        </div>
+                        <label for="titre">Titre</label>
+                        <input type="text" name="titre" id="titre">
+                        <label for="categorie">Catégorie</label>
+                        <select name="categorie" id="categorie">
+                            <option value="1">Objets</option>
+                            <option value="2">Appartements</option>
+                            <option value="3">Hôtels & restaurants</option>
+                        </select>
+                    </form>
+        
+                    <button type="button" form="add-img" class="adialog__add">Valider</button>
+                    
+                </div>
+            
+        </dialog>
+       
+    </body>
+</html>

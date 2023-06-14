@@ -86,6 +86,226 @@ input[type=submit] {
   color: white;
 }
 
+.dialog {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+  width: clamp(320px, 50vw, 630px);
+  border-radius: 10px;
+}
+.dialog::backdrop {
+  background: rgba(0, 0, 0, 0.6);
+}
+.dialog__close {
+  position: absolute;
+  right: 25px;
+  top: 10px;
+}
+.dialog h2 {
+  color: black;
+  font-size: 26px;
+  font-weight: 400;
+  margin-top: 60px;
+}
+.dialog__container {
+  margin: 48px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+}
+.dialog__div {
+  display: flex;
+  width: 66%;
+  border-bottom: solid 1px #b3b3b3;
+  max-height: 550px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  column-gap: 9px;
+  row-gap: 12px;
+  padding-bottom: 50px;
+}
+.dialog__div figure {
+  position: relative;
+  width: 18%;
+}
+.dialog__div figure i {
+  position: absolute;
+  right: 4px;
+  top: 5px;
+  content: "\f2ed";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  height: 17px;
+  width: 17px;
+  background-color: #000000;
+  color: white;
+  font-size: 10px;
+  border-radius: 3px;
+}
+.dialog__div figure::after {
+  content: "";
+  font-family: "Font Awesome 6 Free";
+}
+.dialog__div img {
+  width: 100%;
+  object-fit: contain;
+}
+.dialog__add {
+  width: 237px;
+  height: 36px;
+  background-color: #1d6154;
+  border: none;
+  color: white;
+  border-radius: 60px;
+  font-size: 14px;
+  font-weight: bold;
+}
+.dialog__del {
+  border: none;
+  background-color: white;
+  color: #d65353;
+  font-weight: 300;
+}
+
+.adialog {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+  width: clamp(320px, 50vw, 630px);
+  border-radius: 10px;
+}
+.adialog::backdrop {
+  background: rgba(0, 0, 0, 0.6);
+}
+.adialog__return {
+  position: absolute;
+  left: 25px;
+  top: 10px;
+}
+.adialog__close {
+  position: absolute;
+  right: 25px;
+  top: 10px;
+}
+.adialog h2 {
+  color: black;
+  font-size: 26px;
+  font-weight: 400;
+  margin-top: 60px;
+}
+.adialog__container {
+  margin: 48px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+  width: 66%;
+}
+.adialog__div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 300px;
+  gap: 7px;
+  background-color: #e8f1f6;
+  padding: 22px 0;
+}
+.adialog__div i {
+  margin-bottom: 8px;
+  font-size: 58px;
+  color: #CBD6dc;
+}
+.adialog__div > #photo {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+.adialog__div > img {
+  object-fit: contain;
+  max-height: 300px;
+  height: 100%;
+  max-width: 60%;
+}
+.adialog__div label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 173px;
+  height: 36px;
+  border-radius: 50px;
+  border: none;
+  color: #306685;
+  font-weight: 600;
+  background-color: #CBD6dc;
+}
+.adialog__div p {
+  color: #444444;
+  font-size: 10px;
+}
+.adialog form {
+  display: flex;
+  width: 100%;
+  border-bottom: solid 1px #b3b3b3;
+  flex-direction: column;
+  column-gap: 9px;
+  row-gap: 12px;
+  padding-bottom: 50px;
+  color: #3d3d3d;
+}
+.adialog form label {
+  font-size: 14px;
+  font-weight: 600;
+}
+.adialog form input {
+  border: none;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.09);
+  height: 51px;
+  padding: 0 18px;
+  color: #3d3d3d;
+}
+.adialog form input:focus {
+  background-color: white;
+}
+.adialog form select {
+  border: none;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.09);
+  height: 51px;
+  padding: 0 18px;
+  color: #3d3d3d;
+}
+.adialog__add {
+  width: 237px;
+  height: 36px;
+  background-color: #b3b3b3;
+  border: none;
+  color: white;
+  border-radius: 60px;
+  font-size: 14px;
+  font-weight: bold;
+}
+.adialog__add--valid {
+  background-color: #1d6154;
+}
+
+dialog {
+  padding: 0;
+}
+
 #contact {
   width: 50%;
   margin: auto;
@@ -203,7 +423,6 @@ nav li:hover {
 }
 
 .login-div {
-  margin: 150px auto;
   width: 400px;
   display: flex;
   flex-direction: column;
@@ -347,6 +566,13 @@ h2 {
 
 .lilogin {
   font-weight: bold;
+}
+
+.login-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 65vh;
 }
 
 /*# sourceMappingURL=style.css.map */
