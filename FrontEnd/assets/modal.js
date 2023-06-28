@@ -1,27 +1,29 @@
+import { genererWork, getWorks } from "./script.js";
 const dialBox = document.querySelector(".modal1");
 const dialBox2 = document.querySelector(".modal2");
 const returnBtn = document.querySelector(".adialog__return");
 const adialogdivContent = document.querySelector(".adialog__div").innerHTML;
 const body = document.querySelector("body");
+let works = 0;
 let workArray = 0;
 let modal1Opened = 0;
 let addPhotoBtn = 0;
 let imgFile = 0;
 
+const sendButton = document.querySelector(".adialog__add");
+const submitBtn = document.querySelector(".adialog__add");
+
 /* Fonction permettant de gérer l'affichage et le comportement de la première modale */
 export function modalExec() {
 	const buttondial = document.querySelector(".edit-div-title");
 	addPhotoBtn = document.querySelector(".dialog__add");
-	console.log(buttondial);
 	dialBox.remove();
 	dialBox2.remove();
 	buttondial.addEventListener("click", async () => {
 		modal1Opened = 0;
 		body.appendChild(dialBox);
 		dialBox.showModal();
-		workArray = await genererWorkModal();
-		console.log(workArray);
-		deleteWork();
+		loopDelete();
 		closeModal();
 		modal1Opened++;
 	});
@@ -35,12 +37,14 @@ export function modal2Exec() {
 			body.appendChild(dialBox2);
 			dialBox2.close();
 			dialBox2.showModal();
+			disableformReset();
 			imgPreview();
 			closeModal2();
-			submitForm();
+			submitIfComplete();
 		}
 
 		modalBack();
+		submitBtn.addEventListener("click", sendOnclick);
 	});
 }
 
@@ -48,12 +52,12 @@ export function modal2Exec() {
 
 async function genererWorkModal() {
 	const reponse = await fetch("http://localhost:5678/api/works");
-	const works = await reponse.json();
+	const worksModal = await reponse.json();
 
 	const gallery = document.querySelector(".dialog__div");
 	gallery.innerHTML = "";
-	for (let i = 0; i < works.length; i++) {
-		const work = works[i];
+	for (let i = 0; i < worksModal.length; i++) {
+		const work = worksModal[i];
 
 		const figureElement = document.createElement("figure");
 		figureElement.innerHTML = `<i class="fa-regular fa-trash-can"></i>`;
@@ -66,7 +70,7 @@ async function genererWorkModal() {
 		figureElement.appendChild(figcaptionElement);
 		gallery.appendChild(figureElement);
 	}
-	return await works;
+	return await worksModal;
 }
 
 /* Fonction permettant le retour à la première modale depuis la seconde */
@@ -111,6 +115,7 @@ function addphotograph() {
 }
 function imgClean() {
 	if (document.querySelector(".adialog__div img") !== null) {
+		imgFile = 0;
 		const imgdiv = document.querySelector(".adialog__div");
 		imgdiv.innerHTML = adialogdivContent;
 		const resetForm = document.querySelector("#add-img");
@@ -141,10 +146,10 @@ function closeModal() {
 	});
 }
 function closeModal2() {
-	imgClean();
 	console.log("hey");
 	const closeModal2 = document.querySelector(".adialog__close");
 	closeModal2.addEventListener("click", () => {
+		imgClean();
 		dialBox2.remove();
 		dialBox2.close();
 	});
@@ -156,6 +161,7 @@ function closeModal2() {
 			rect.left <= event.clientX &&
 			event.clientX <= rect.left + rect.width;
 		if (!isInDialog) {
+			imgClean();
 			dialBox2.remove();
 			dialBox2.close();
 		}
@@ -163,43 +169,58 @@ function closeModal2() {
 }
 
 /* Fonctions relatives à l'ajout d'une nouvelle entrée dans la DB */
+function disableformReset() {
+	sendButton.className = "adialog__add";
+	sendButton.disabled = true;
+}
 
-function submitForm() {
-	
-	console.log("send");
-	const submitBtn = document.querySelector(".adialog__add");
-	
-	submitBtn.removeEventListener("mousedown", sendOnclick);
-	submitBtn.addEventListener("mousedown", sendOnclick);
-	submitBtn.addEventListener('mouseup',(e) =>{
-		e.preventDefault()
-		e.stopPropagation()	
-	})
+function submitIfComplete() {
+	const formSelector = document.querySelector("#add-img");
+	const imgInput = document.querySelector("#photo");
+	const titleInput = document.querySelector("#titre");
+
+	formSelector.addEventListener("change", () => {
+		if (imgFile === 0 || titleInput.value === "") {
+			sendButton.className = "adialog__add";
+			sendButton.disabled = true;
+		} else {
+			sendButton.className = "adialog__add adialog__add--valid";
+			console.log("toggl");
+			sendButton.disabled = false;
+		}
+	});
+}
 
 async function sendOnclick(event) {
 	event.preventDefault();
-	event.stopPropagation()	
+	submitBtn.removeEventListener("click", sendOnclick);
 	var formData = new FormData();
 	formData.append("image", imgFile);
 	formData.append("title", document.querySelector("#titre").value);
 	formData.append("category", document.querySelector("#categorie").value);
-	for (const value of formData.values()) {
-		console.log(value);
-	}
-	const addReq = await fetch("http://localhost:5678/api/works", {
+	await fetch("http://localhost:5678/api/works", {
 		method: "POST",
 		headers: { Authorization: `Bearer ${window.localStorage.getItem("token")}` },
 		body: formData,
 	});
-	console.log(addReq);
+	imgClean();
+	dialBox2.remove();
+	dialBox2.close();
+	works = await getWorks();
+	genererWork(works);
 }
-return false
-}
-
 /* Fonctions relatives à la suppression d'une entrée dans la DB */
 
-function deleteWork() {
+async function loopDelete() {
+	workArray = await genererWorkModal();
+	deleteWork();
+	works = await getWorks();
+	genererWork(works);
+}
+
+async function deleteWork() {
 	const deleteBtn = document.querySelectorAll("dialog figure i");
+
 	for (let i = 0; i < deleteBtn.length; i++) {
 		const element = deleteBtn[i];
 		const elementId = workArray[i].id;
@@ -214,7 +235,8 @@ function deleteWork() {
 					},
 				}
 			);
-			console.log(deleteReq);
+
+			loopDelete();
 		});
 	}
 }

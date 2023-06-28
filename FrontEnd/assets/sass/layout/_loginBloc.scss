@@ -43,7 +43,10 @@
     width: 180px;
     height: 36px;
     border-style: none;
-    background-color: $button-primary;
+    background-color: $border-primary;
     border-radius: 60px;
-    color: white
+    color: white;
+    &--valid{
+        background-color: $button-primary;
+    }
 }

@@ -1,5 +1,14 @@
 const submitInfo = document.querySelector(".login-form");
 export let userToken = 0;
+const regexeMail = /^[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/
+const emailInput = document.querySelector("#email")
+const passInput = document.querySelector('#pass')
+const connectBtn = document.querySelector('.btn-connect')
+checkForm()
+submitInfo.addEventListener('change',()=>{
+	checkForm()
+})
+
 submitInfo.addEventListener("submit", async function (event) {
 	event.preventDefault();
 	const login = {
@@ -20,3 +29,14 @@ submitInfo.addEventListener("submit", async function (event) {
 		alert("mauvais email ou mot de passe");
 	}
 });
+
+function checkForm(){
+
+	if ((emailInput.value.match(regexeMail)) && (passInput !== null) ){
+		connectBtn.disabled = false
+		connectBtn.className = "btn-connect btn-connect--valid"
+	}else{
+		connectBtn.disabled = true
+		connectBtn.className = "btn-connect"
+	}
+}

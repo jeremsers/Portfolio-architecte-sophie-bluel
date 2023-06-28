@@ -122,6 +122,8 @@ input[type=submit] {
   width: 66%;
   border-bottom: solid 1px #b3b3b3;
   max-height: 550px;
+  overflow-y: scroll;
+  scrollbar-width: none;
   flex-direction: row;
   flex-wrap: wrap;
   column-gap: 9px;
@@ -155,7 +157,8 @@ input[type=submit] {
 }
 .dialog__div img {
   width: 100%;
-  object-fit: contain;
+  height: 95px;
+  object-fit: cover;
 }
 .dialog__add {
   width: 237px;
@@ -420,6 +423,8 @@ nav li:hover {
 }
 .gallery img {
   width: 100%;
+  height: 507px;
+  object-fit: cover;
 }
 
 .login-div {
@@ -463,9 +468,12 @@ nav li:hover {
   width: 180px;
   height: 36px;
   border-style: none;
-  background-color: #1d6154;
+  background-color: #b3b3b3;
   border-radius: 60px;
   color: white;
+}
+.btn-connect--valid {
+  background-color: #1d6154;
 }
 
 .admin-div {

@@ -1,3 +1,4 @@
+
 .dialog {
 	position: fixed;
 	display: flex;
@@ -34,6 +35,9 @@
 		width: 66%;
 		border-bottom: solid 1px $border-primary;
 		max-height: 550px;
+		overflow-y:scroll;
+		scrollbar-width: none;
+		
 		flex-direction: row;
 		flex-wrap: wrap;
 		column-gap: 9px;
@@ -66,7 +70,8 @@
 		}
 		& img {
 			width: 100%;
-			object-fit: contain;
+			height: 95px;
+			object-fit: cover;
 		}
 	}
 	&__add {
@@ -215,6 +220,7 @@
 			background-color: $button-primary;
 		}
 	}
+	
 }
 
 dialog {

@@ -1,5 +1,5 @@
 import { modalExec, modal2Exec } from "./modal.js";
-let works = 0;
+let works = 0
 
 if (window.localStorage.getItem("token") !== null) {
 	SetAdminLayout();
@@ -7,9 +7,9 @@ if (window.localStorage.getItem("token") !== null) {
 	logoutFunction();
 	removeFilter();
 	works = await getWorks()
-	genererWork(works);
 	modalExec();
 	modal2Exec()
+	genererWork(works);
 } else {
 	works = await getWorks()
 	genererWork(works);
@@ -17,12 +17,12 @@ if (window.localStorage.getItem("token") !== null) {
 }
 
 /* generation du contenu du portfolio */
-async function getWorks(){
+export async function getWorks(){
 	const reponse = await fetch("http://localhost:5678/api/works");
-	works = await reponse.json();
+	const works = await reponse.json();
 	return works
 }
-function genererWork(works) {
+export function genererWork(works) {
 	const gallery = document.querySelector(".gallery");
 	gallery.innerHTML = "";
 	for (let i = 0; i < works.length; i++) {
